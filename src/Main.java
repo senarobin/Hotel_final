@@ -56,36 +56,33 @@ public class Main {
                     atualizarReserva();
                     break;
                 case 13:
-                    excluirReserva();
-                    break;
-                case 14:
                     atualizarFuncionario();
                     break;
-                case 15:
+                case 14:
                     excluirFuncionario();
                     break;
-                case 16:
+                case 15:
                     excluirQuarto();
                     break;
-                case 17:
+                case 16:
                     listarReservasAtivas();
                     break;
-                case 18:
+                case 17:
                     gerarRelatorioFuncionarios();
                     break;
-                case 19:
+                case 18:
                     atualizarStatusQuarto();
                     break;
-                case 20:
+                case 19:
                     listarQuartosPorStatus();
                     break;
-                case 21:
+                case 20:
                     atualizarHospede();
                     break;
-                case 22:
+                case 21:
                     cancelarReserva();
                     break;
-                case 23:
+                case 22:
                     System.out.println("Saindo...");
                     continuar = false;
                     break;
@@ -441,17 +438,6 @@ public class Main {
             System.out.println("Reserva cancelada com sucesso!");
         } catch (Exception e) {
             System.out.println("Erro ao cancelar a reserva: " + e.getMessage());
-        }
-    }
-
-    private static void excluirReserva() {
-        try {
-            System.out.print("Digite o ID da reserva: ");
-            String idReserva = scanner.nextLine();
-            gerenciadorHotel.excluirReserva(idReserva);
-            System.out.println("Reserva excluída com sucesso!");
-        } catch (Exception e) {
-            System.out.println("Erro ao excluir reserva: " + e.getMessage());
         }
     }
 
