@@ -106,7 +106,19 @@ public class Main {
         System.out.println("9. Relatório de Ocupação");
         System.out.println("10. Relatório de Receita");
         System.out.println("11. Verificar Disponibilidade de Quartos");
-        System.out.println("12. Sair");
+        System.out.println("12. Atualizar Reserva");
+        System.out.println("13. Atualizar Funcionário");
+        System.out.println("14. Excluir Funcionário");
+        System.out.println("15. Excluir Quarto");
+        System.out.println("16. Reservas Ativas");
+        System.out.println("17. Atualizar Funcionário");
+        System.out.println("18. Atualizar Status do Quarto");
+        System.out.println("19. Listar Quartos por Status");
+        System.out.println("20. Atualizar Hospede");
+        System.out.println("21. Cancelar Reserva");
+        System.out.println("22. Sair do Sistema");
+
+
         System.out.print("Escolha uma opção: ");
     }
 
@@ -128,15 +140,30 @@ public class Main {
         }
     }
 
-    private static void cadastrarHospede() {
+    public static void cadastrarHospede() {
         try {
             System.out.print("Digite o nome do hóspede: ");
             String nome = scanner.nextLine();
+
             System.out.print("Digite o CPF do hóspede: ");
             String cpf = scanner.nextLine();
 
-            Hospede hospede = new Hospede(nome, cpf);
-            gerenciadorHotel.cadastrarHospede(hospede);
+            System.out.print("Digite o endereço do hóspede: ");
+            String endereco = scanner.nextLine();
+
+            if (endereco == null || endereco.isEmpty()) {
+                throw new HotelException("Endereço não pode ser vazio");
+            }
+
+            System.out.print("Digite o telefone do hóspede: ");
+            String telefone = scanner.nextLine();
+
+            System.out.print("Digite a data de nascimento do hóspede (formato: yyyy-MM-dd): ");
+            String dataNascimentoStr = scanner.nextLine();
+            LocalDate dataNascimento = LocalDate.parse(dataNascimentoStr);
+
+            Hospede hospede = new Hospede(nome, cpf, endereco, telefone, dataNascimento);
+            GerenciadorHotel.getInstance().cadastrarHospede(hospede);
             System.out.println("Hóspede cadastrado com sucesso!");
         } catch (Exception e) {
             System.out.println("Erro ao cadastrar hóspede: " + e.getMessage());
@@ -151,6 +178,12 @@ public class Main {
             System.out.print("Digite o CPF do funcionário: ");
             String cpf = scanner.nextLine();
 
+            System.out.print("Digite o endereço do funcionário: ");
+            String endereco = scanner.nextLine();
+
+            System.out.print("Digite o telefone do funcionário: ");
+            String telefone = scanner.nextLine();
+
             System.out.print("Digite o cargo (RECEPCIONISTA, CAMAREIRA, GERENTE, MANUTENCAO): ");
             Cargo cargo = Cargo.valueOf(scanner.nextLine().toUpperCase());
 
@@ -160,9 +193,10 @@ public class Main {
             System.out.print("Digite o turno (MANHA, TARDE, NOITE): ");
             TurnoTrabalho turno = TurnoTrabalho.valueOf(scanner.nextLine().toUpperCase());
 
-            Funcionario funcionario = new Funcionario(nome, cpf, cargo, salarioBase, turno);
+            Funcionario funcionario = new Funcionario(nome, cpf, endereco, telefone, cargo, salarioBase, turno);
 
             gerenciadorHotel.cadastrarFuncionario(funcionario);
+
             System.out.println("Funcionário cadastrado com sucesso!");
 
         } catch (IllegalArgumentException e) {
@@ -171,7 +205,6 @@ public class Main {
             System.out.println("Erro ao cadastrar funcionário: " + e.getMessage());
         }
     }
-
 
     private static void realizarReserva() {
         try {
