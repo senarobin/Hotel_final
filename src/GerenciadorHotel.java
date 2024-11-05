@@ -203,16 +203,6 @@ public class GerenciadorHotel {
         System.out.println("Reserva atualizada com sucesso!");
     }
 
-    public void excluirReserva(String idReserva) throws HotelException {
-        Reserva reserva = buscarReservaPorId(idReserva);
-
-        if (reserva.getStatus() == StatusReserva.CONCLUIDA) {
-            throw new HotelException("Não é possível excluir uma reserva já concluída.");
-        }
-
-        reservas.remove(reserva);
-    }
-
     public void atualizarFuncionario(String cpf, String novoNome, Cargo novoCargo) throws HotelException {
         Funcionario funcionario = buscarFuncionarioPorCpf(cpf);
         funcionario.setNome(novoNome);
