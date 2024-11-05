@@ -4,7 +4,7 @@ public abstract class Pessoas implements Pessoa {
     protected String endereco;
     protected String telefone;
 
-    public Pessoas(String nome, String cpf) {
+    public Pessoas(String nome, String cpf, String endereco, String telefone) {
         this.nome = nome;
         this.cpf = cpf;
         this.endereco = endereco;
@@ -17,7 +17,9 @@ public abstract class Pessoas implements Pessoa {
     }
 
     @Override
-    public String getCpf() { return cpf; }
+    public String getCpf() {
+        return cpf;
+    }
 
     @Override
     public void validarCPF() throws ValidacaoException {
@@ -38,10 +40,11 @@ public abstract class Pessoas implements Pessoa {
             throw new ValidacaoException("Telefone não pode ser vazio");
         }
         validarCPF();
-        return false;
+        return true;
     }
 
-    protected void setNome(String novoNome) {
-        this.nome = novoNome;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 }
+
