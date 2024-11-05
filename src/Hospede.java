@@ -7,16 +7,11 @@ public class Hospede extends Pessoas implements Gerenciavel {
     private List<Reserva> historicoReserva;
 
     public Hospede(String nome, String cpf, String endereco, String telefone, LocalDate dataNascimento) {
-        super(nome, cpf);
+        super(nome, cpf, endereco, telefone);
         this.dataNascimento = dataNascimento;
         this.historicoReserva = new ArrayList<>();
     }
 
-    public Hospede(String nome, String cpf) {
-        super(nome, cpf);
-        this.dataNascimento = LocalDate.now();
-        this.historicoReserva = new ArrayList<>();
-    }
 
     public void adicionarReserva(Reserva reserva) {
         historicoReserva.add(reserva);
